@@ -4,10 +4,12 @@ import AuthLayout from '../../components/AuthShared/AuthLayout';
 import ForgotPasswordModal from '../../components/AuthShared/ForgotPasswordModal';
 import api from '../../api/axios';
 import { alertSuccess } from '../../utils/alerts';
+import { useAdminAuth } from '../../context/AdminAuthContext';
 import './AdminAuth.css';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  const { setAdmin } = useAdminAuth();
   const [form, setForm] = useState({ email: '', password: '' });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -19,6 +21,7 @@ const AdminLogin = () => {
     setSubmitting(true);
     try {
       const { data } = await api.post('/admin/auth/login', form);
+      setAdmin(data.admin);
       alertSuccess('Welcome Back!', `Hi, ${data.admin.name}`);
       navigate('/admin/dashboard');
     } catch (err) {
