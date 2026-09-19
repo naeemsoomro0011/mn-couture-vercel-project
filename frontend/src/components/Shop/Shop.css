@@ -1,0 +1,339 @@
+.shop-section {
+  padding-block: 5rem 6rem;
+}
+
+.shop-section h2 { text-align: center; margin-bottom: 2.4rem; }
+
+/* ---- Search + filter toolbar (styled after the neon search-bar reference) ---- */
+.shop-toolbar {
+  display: flex;
+  gap: 0.8rem;
+  max-width: 560px;
+  margin: 0 auto 3rem;
+}
+
+.shop-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85em 1.3em;
+  border-radius: 999px;
+  background: var(--bg-raised);
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  transition: border-color 0.35s, box-shadow 0.35s;
+}
+
+.shop-search:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 5px rgba(198, 161, 91, 0.14), 0 8px 30px -10px rgba(124, 40, 72, 0.4);
+  color: var(--text);
+}
+
+.shop-search input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.shop-search input:focus { outline: none; }
+
+.shop-filter-btn { flex-shrink: 0; }
+
+/* ---- Gender sections ---- */
+.shop-gender-section { margin-bottom: 3.5rem; }
+
+.shop-gender-heading {
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+
+/* ---- Item card ---- */
+.item-card { overflow: hidden; display: flex; flex-direction: column; }
+
+.item-card-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.item-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-premium);
+}
+
+.item-card:hover .item-card-media img { transform: scale(1.06); }
+
+.item-card-eye {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 17, 24, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff8ef;
+  transition: transform 0.3s var(--ease-premium), background 0.3s;
+}
+
+.item-card-eye:hover { background: var(--gradient); transform: scale(1.1); }
+
+.item-card-body { padding: 0.9rem; }
+
+.item-card-gender {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.item-card-name {
+  margin: 0.3rem 0 0.25rem;
+  font-size: 0.98rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-card-desc {
+  font-size: 0.76rem;
+  margin-bottom: 0.6rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-card-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.size-chip {
+  padding: 0.35em 0.85em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  text-transform: capitalize;
+  transition: all 0.25s var(--ease-premium);
+}
+
+.size-chip-active {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff8ef;
+}
+
+.item-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.item-card-price {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.item-card-buy { padding: 0.5em 0.9em; font-size: 0.74rem; }
+
+/* ---- Login required popup ---- */
+.login-required-icon {
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+/* ---- Quick view popup ---- */
+.quickview-card { max-width: 460px; }
+
+.quickview-image-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.quickview-image {
+  width: 220px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.quickview-nav {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-raised-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.quickview-nav-left { left: 0; }
+.quickview-nav-right { right: 0; }
+
+.quickview-sizes { justify-content: center; margin-bottom: 1.2rem; }
+
+.quickview-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  background: var(--bg-raised-2);
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.qty-control button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  color: #fff8ef;
+  font-size: 0.75rem;
+}
+
+.qty-control button:disabled { opacity: 0.4; }
+.qty-control span { min-width: 18px; text-align: center; font-weight: 700; }
+
+.quickview-selection-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.selection-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35em 0.8em;
+  border-radius: 999px;
+  background: var(--gradient-soft);
+  color: var(--gold);
+}
+
+.quickview-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  margin-bottom: 1.2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.quickview-actions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.quickview-actions .btn { flex: 1; justify-content: center; }
+
+/* ---- Checkout ---- */
+.checkout-summary {
+  background: var(--bg-raised-2);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.4rem;
+  text-align: left;
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.83rem;
+  padding: 0.35rem 0;
+  color: var(--text-muted);
+}
+
+.checkout-summary-total {
+  border-top: 1px solid var(--border);
+  margin-top: 0.4rem;
+  padding-top: 0.6rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ---- Filter modal ---- */
+.filter-price-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.filter-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Phones get one full-width card at a time — two squashed cards side by side
+   never looked premium. From small tablets upwards the grid fills out again. */
+@media (min-width: 600px) {
+  .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+  .item-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1240px) {
+  .item-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---- Phone polish for the single-column card ---- */
+@media (max-width: 599px) {
+  .shop-section { padding-block: 3.5rem 4rem; }
+  .shop-toolbar { margin-bottom: 2rem; }
+  .item-card-media { aspect-ratio: 3 / 4; }
+  .item-card-body { padding: 1.1rem; }
+  .item-card-name { font-size: 1.12rem; white-space: normal; }
+  .item-card-desc { font-size: 0.84rem; -webkit-line-clamp: 2; }
+  .item-card-gender { font-size: 0.72rem; }
+  .item-card-sizes { gap: 0.4rem; margin-bottom: 0.9rem; }
+  .size-chip { padding: 0.45em 1em; font-size: 0.8rem; }
+  .item-card-price { font-size: 1.2rem; }
+  .item-card-buy { padding: 0.65em 1.2em; font-size: 0.82rem; }
+}

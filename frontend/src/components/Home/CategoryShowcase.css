@@ -1,0 +1,108 @@
+.category-showcase {
+  padding-block: 4rem 6rem;
+  text-align: center;
+  position: relative;
+}
+
+.category-showcase h2 { margin-bottom: 3rem; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  perspective: 1000px;
+}
+
+.category-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.4rem 1.2rem;
+  text-align: center;
+  color: var(--text);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s var(--ease-premium), box-shadow 0.55s var(--ease-premium);
+}
+
+/* Soft colour bloom behind each tile — .card-3d already owns ::before
+   for the gradient border ring, so the glow lives on ::after instead. */
+.category-tile::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 78%;
+  height: 78%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(var(--glow-plum), 0.32), transparent 72%);
+  filter: blur(32px);
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease-premium);
+}
+
+[data-theme='light'] .category-tile::after { opacity: 0.62; }
+
+.category-tile:hover {
+  transform: translateY(-10px) scale(1.025) rotateX(5deg);
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / 0.25),
+    0 30px 50px -18px hsl(var(--shadow-color) / 0.5);
+}
+
+.category-tile:hover::after { opacity: 0.85; }
+
+/* ---- Blob-shaped icon orb: organic morphing shape + gentle float ---- */
+.category-tile-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  color: #fff8ef;
+  font-size: 1.5rem;
+  box-shadow: 0 14px 30px -12px rgba(109, 40, 217, 0.5);
+  border-radius: var(--radius-blob);
+  animation: blobMorph 9s var(--ease-premium) infinite, floatIdle 5.5s var(--ease-premium) infinite;
+  position: relative;
+}
+
+.category-tile-icon::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 1.5px solid rgba(var(--glow-gold), 0.5);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-premium), inset 0.4s var(--ease-premium);
+  pointer-events: none;
+}
+
+.category-tile:hover .category-tile-icon::before { opacity: 1; inset: -10px; }
+
+.category-tile-icon svg {
+  transition: transform 0.45s var(--ease-premium);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.category-tile:hover .category-tile-icon svg { transform: scale(1.16) rotate(-6deg); }
+
+.category-tile h3 { font-size: 1.05rem; color: var(--text); }
+
+/* Desynchronise the four orbs so the grid feels alive, not robotic. */
+.category-tile:nth-child(1) .category-tile-icon { animation-delay: 0s, 0s; }
+.category-tile:nth-child(2) .category-tile-icon { animation-delay: -3s, -1.4s; }
+.category-tile:nth-child(3) .category-tile-icon { animation-delay: -6s, -2.8s; }
+.category-tile:nth-child(4) .category-tile-icon { animation-delay: -1.5s, -4.2s; }
+
+@media (min-width: 700px) {
+  .category-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-tile-icon { animation: none; }
+}

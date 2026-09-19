@@ -1,0 +1,228 @@
+.shopinfo-section {
+  position: relative;
+  padding-block: 5rem 6rem;
+  overflow: hidden;
+}
+
+.shopinfo-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  align-items: stretch;
+  isolation: isolate;
+}
+
+.shopinfo-card {
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The card's own border/gradient-ring (painted by .card-3d) never scrolls —
+   only this inner wrapper does. Keeping overflow off the bordered element
+   is what stops the ring from glitching/redrawing as a stray line at the
+   top edge while its content is scrolled. */
+.shopinfo-card-scroll {
+  padding: 2.2rem;
+  min-width: 0;
+}
+
+.shopinfo-desc {
+  margin: 1.2rem 0 1.6rem;
+  font-size: 0.9rem;
+}
+
+.shopinfo-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.shopinfo-details p,
+.shopinfo-detail-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0.5rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  color: var(--text);
+  text-align: left;
+  max-width: none;
+  line-height: 1.4;
+}
+
+/* Long emails/addresses wrap instead of pushing the card sideways on mobile. */
+.shopinfo-details span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Icon "chips" instead of bare glyphs — small gradient-tinted badges. */
+.shopinfo-details svg {
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+  padding: 9px;
+  background: var(--gradient-soft);
+  border-radius: 50%;
+  transition: background 0.35s var(--ease-premium), color 0.35s, transform 0.35s var(--ease-premium);
+}
+
+.shopinfo-detail-btn {
+  transition: background 0.3s var(--ease-premium), color 0.3s, transform 0.3s var(--ease-premium);
+}
+
+.shopinfo-detail-btn:hover {
+  background: var(--gradient-soft);
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.shopinfo-detail-btn:hover svg,
+.shopinfo-details p:hover svg {
+  background: var(--gradient);
+  color: #fff8ef;
+  transform: scale(1.08) rotate(-6deg);
+}
+
+.shopinfo-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.shopinfo-social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-raised-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: transform 0.35s var(--ease-premium), background 0.35s, color 0.35s, box-shadow 0.35s var(--ease-premium);
+}
+
+.shopinfo-social-btn:hover {
+  background: var(--gradient);
+  color: #fff8ef;
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 14px 26px -10px rgba(109, 40, 217, 0.55);
+}
+
+/* ---- Map ---- */
+.shopinfo-map {
+  position: relative;
+  min-height: 300px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+}
+
+.shopinfo-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 0;
+  display: block;
+  filter: saturate(1.05);
+}
+
+/* Soft inward vignette so a bright map frame sits comfortably inside a
+   dark panel — purely a compositing overlay, the map stays fully
+   interactive underneath (pointer-events: none). */
+.shopinfo-map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-shadow: inset 0 0 60px 10px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+[data-theme='light'] .shopinfo-map::before { box-shadow: inset 0 0 40px 6px rgba(0, 0, 0, 0.12); }
+
+.shopinfo-map-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  padding: 0.65em 1.2em;
+  z-index: 2;
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.55);
+}
+
+.shopinfo-map-btn:hover { transform: translateX(-50%) translateY(-2px); }
+
+@media (max-width: 559px) {
+  .shopinfo-section { padding-block: 3.5rem 4rem; }
+  .shopinfo-card-scroll { padding: 1.5rem 1.2rem; }
+  .shopinfo-details p,
+  .shopinfo-detail-btn { font-size: 0.83rem; padding: 0.5rem 0.55rem; }
+  .shopinfo-map,
+  .shopinfo-map iframe { min-height: 260px; }
+}
+
+/* ============================================================
+   DESKTOP HEIGHT FIX — previously "align-items: stretch" let the
+   map balloon to match however tall the contact card's content
+   happened to be (unbounded). The row now has one sane, fixed
+   height; the card scrolls internally (rare — most shops' info
+   fits) instead of dragging the whole section taller than it
+   needs to be.
+   ============================================================ */
+@media (min-width: 860px) {
+  .shopinfo-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    height: 560px;
+  }
+
+  .shopinfo-inner::before {
+    content: '';
+    position: absolute;
+    inset: -6% -2%;
+    z-index: -1;
+    background:
+      radial-gradient(38% 55% at 18% 30%, rgba(var(--glow-plum), 0.28), transparent 70%),
+      radial-gradient(38% 55% at 82% 70%, rgba(var(--glow-gold), 0.24), transparent 70%);
+    filter: blur(60px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  [data-theme='light'] .shopinfo-inner::before { opacity: 0.78; }
+
+  .shopinfo-card {
+    height: 100%;
+    /* Static frame — clips cleanly to the rounded corners but never scrolls
+       itself, so the card's own border/ring stays put. */
+    overflow: hidden;
+  }
+
+  .shopinfo-card-scroll {
+    height: 100%;
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-right: 1.8rem;
+  }
+
+  .shopinfo-map { height: 100%; min-height: 0; }
+  .shopinfo-map iframe { min-height: 0; }
+}

@@ -1,0 +1,122 @@
+/* ============ Logo ============ */
+.mnc-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mnc-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.mnc-logo-text em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* ============ 3D Loader ============ */
+.loader3d-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.loader3d-scene {
+  perspective: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader3d-gem {
+  animation: gemSpin 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.45));
+}
+
+@keyframes gemSpin {
+  0%   { transform: rotateY(0deg) rotateX(12deg) scale(1); }
+  50%  { transform: rotateY(180deg) rotateX(12deg) scale(0.82); }
+  100% { transform: rotateY(360deg) rotateX(12deg) scale(1); }
+}
+
+.loader3d-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============ Blob Background ============ */
+.blob-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.blob-glow-a {
+  width: 42vw;
+  height: 42vw;
+  max-width: 480px;
+  max-height: 480px;
+  top: -10%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(124, 40, 72, 0.5), transparent 70%);
+}
+
+.blob-glow-b {
+  width: 36vw;
+  height: 36vw;
+  max-width: 420px;
+  max-height: 420px;
+  bottom: -12%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(198, 161, 91, 0.4), transparent 70%);
+  animation-delay: -6s;
+}
+
+[data-theme='light'] .blob-glow-a { opacity: 0.55; }
+[data-theme='light'] .blob-glow-b { opacity: 0.5; }
+
+/* ---- Per-section retuning (variant="chat" | "gallery" | "contact") ----
+   Same two-blob language, repositioned/recoloured so each hero feels
+   bespoke instead of the exact same glow repeating down the page. */
+.blob-bg-chat .blob-glow-a {
+  width: 50vw; height: 50vw; max-width: 560px; max-height: 560px;
+  top: -20%; left: -14%;
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.55), transparent 70%);
+}
+.blob-bg-chat .blob-glow-b {
+  width: 44vw; height: 44vw; max-width: 480px; max-height: 480px;
+  bottom: -18%; right: -10%;
+  background: radial-gradient(circle, rgba(219, 39, 119, 0.42), transparent 70%);
+}
+
+.blob-bg-gallery .blob-glow-a { top: 2%; left: -12%; }
+.blob-bg-gallery .blob-glow-b { bottom: 0%; right: -10%; }
+
+.blob-bg-contact .blob-glow-a { opacity: 0.72; }
+.blob-bg-contact .blob-glow-b { opacity: 0.6; }
+
+[data-theme='light'] .blob-bg-chat .blob-glow-a,
+[data-theme='light'] .blob-bg-chat .blob-glow-b { opacity: 0.62; }
+[data-theme='light'] .blob-bg-contact .blob-glow-a { opacity: 0.8; }
+[data-theme='light'] .blob-bg-contact .blob-glow-b { opacity: 0.68; }

@@ -1,0 +1,163 @@
+.user-chat-fab {
+  position: fixed !important;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff8ef;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 34px -10px rgba(124, 40, 72, 0.55);
+  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s;
+}
+
+/* Soft ambient ring that keeps gently inviting a click. */
+.user-chat-fab::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--glow-plum), 0.55);
+  opacity: 0;
+  animation: fabRingPulse 3s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes fabRingPulse {
+  0%        { transform: scale(0.9); opacity: 0.7; }
+  70%, 100% { transform: scale(1.4); opacity: 0; }
+}
+
+.user-chat-fab:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 20px 40px -10px rgba(124, 40, 72, 0.65);
+}
+
+.user-chat-fab svg { transition: transform 0.35s var(--ease-premium); }
+.user-chat-fab:hover svg { transform: rotate(-8deg) scale(1.05); }
+
+.user-chat-fab-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--error);
+  border: 2px solid var(--bg);
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* Expanding "ping" ring alongside the dot itself. */
+.user-chat-fab-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--error);
+  animation: fabDotRing 1.6s ease-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.25); }
+}
+
+@keyframes fabDotRing {
+  0%   { transform: scale(1); opacity: 0.75; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* The `.card-3d` utility also sets `position: relative`, and both selectors
+   have identical specificity — so depending on the final CSS bundle order it
+   could win and drop the panel into normal document flow (it was rendering
+   stuck at the bottom of the page instead of floating above the footer).
+   Doubling the class here makes this rule unambiguously stronger. */
+.user-chat-panel.user-chat-panel {
+  position: fixed !important;
+  bottom: 96px;
+  right: 24px;
+  left: auto;
+  top: auto;
+  z-index: 201;
+  width: min(360px, calc(100vw - 32px));
+  height: 460px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  /* box-shadow (unlike a pseudo-element glow) is never clipped by this
+     panel's own overflow:hidden, so the ambient glow layers safely here. */
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / 0.3),
+    0 26px 60px -16px hsl(var(--shadow-color) / 0.55),
+    0 0 60px -10px rgba(var(--glow-plum), 0.4);
+}
+
+.user-chat-header {
+  position: relative;
+  padding: 1.1rem 1.3rem;
+  background: var(--gradient);
+  color: #fff8ef;
+  font-weight: 700;
+  font-size: 0.9rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.user-chat-header::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -10%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.28), transparent 70%);
+  pointer-events: none;
+}
+
+.user-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--plum-light) transparent;
+}
+
+.user-chat-messages::-webkit-scrollbar { width: 6px; }
+.user-chat-messages::-webkit-scrollbar-thumb { background: var(--gradient); border-radius: 10px; }
+.user-chat-messages::-webkit-scrollbar-track { background: transparent; }
+
+.user-chat-panel .chat-input-row { padding: 0.8rem; }
+
+/* card-3d's hover lift would otherwise shift the whole floating panel
+   (and its input) every time the cursor entered it — keep the same glow
+   as the resting state so hovering never looks like it lost its halo. */
+.user-chat-panel.card-3d:hover {
+  transform: none;
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / 0.3),
+    0 26px 60px -16px hsl(var(--shadow-color) / 0.55),
+    0 0 60px -10px rgba(var(--glow-plum), 0.4);
+}
+
+@media (max-width: 420px) {
+  .user-chat-fab { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+  .user-chat-panel.user-chat-panel { bottom: 82px; right: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-chat-fab::before,
+  .user-chat-fab-dot,
+  .user-chat-fab-dot::after { animation: none; }
+}

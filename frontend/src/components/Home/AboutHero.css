@@ -1,0 +1,104 @@
+.about-hero {
+  position: relative;
+  min-height: 94vh;
+  display: flex;
+  align-items: center;
+  padding-top: 6rem;
+  overflow: hidden;
+}
+
+.about-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.home-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.home-title { margin-bottom: 1.3rem; }
+
+.about-hero-desc {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about-hero-cta { display: inline-flex; margin-bottom: 2.2rem; }
+
+.about-hero-socials { display: flex; gap: 0.7rem; }
+
+.about-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: transform 0.35s var(--ease-premium), background 0.35s, color 0.35s;
+}
+
+.about-social-btn:hover {
+  background: var(--gradient);
+  color: #fff8ef;
+  transform: translateY(-4px) scale(1.07);
+}
+
+.about-hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.about-visual-blob {
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-soft);
+  border: 1px solid var(--border);
+}
+
+.about-visual-float {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 1.2rem;
+  box-shadow: 0 12px 28px -10px hsl(var(--shadow-color) / 0.4);
+  animation: floatBadge 5s var(--ease-premium) infinite;
+}
+
+.about-visual-float-1 { top: 6%; left: 4%; animation-delay: 0s; }
+.about-visual-float-2 { bottom: 10%; right: 2%; animation-delay: -1.6s; }
+.about-visual-float-3 { top: 50%; right: -4%; animation-delay: -3.2s; }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@media (min-width: 860px) {
+  .about-hero-inner {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}

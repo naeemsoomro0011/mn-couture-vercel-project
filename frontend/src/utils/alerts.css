@@ -1,0 +1,73 @@
+/* Premium override for every SweetAlert2 popup site-wide. SweetAlert2
+   injects its own base styles, so specificity + !important is needed to
+   reliably win against them. */
+
+.mnc-swal-popup {
+  border-radius: 24px !important;
+  padding: 2.2rem 1.8rem !important;
+  position: relative;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.55) !important;
+  border: 1.5px solid transparent !important;
+  background-clip: padding-box !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.mnc-swal-popup::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.65), rgba(236, 72, 153, 0.55));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.mnc-swal-title {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 1.4rem !important;
+}
+
+.mnc-swal-html {
+  font-size: 0.9rem !important;
+  opacity: 0.85;
+}
+
+.mnc-swal-icon {
+  border-color: currentColor !important;
+}
+
+.mnc-swal-actions {
+  gap: 0.8rem !important;
+  margin-top: 1.4rem !important;
+}
+
+.mnc-swal-confirm {
+  border-radius: 999px !important;
+  padding: 0.75em 2em !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 12px 28px -10px rgba(109, 40, 217, 0.55) !important;
+}
+
+/* This was the reported bug: the cancel/back button relied on inherited
+   currentColor for both text and border, which could resolve to something
+   invisible depending on context — now fully explicit. */
+.mnc-swal-cancel {
+  border-radius: 999px !important;
+  padding: 0.75em 1.8em !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  background: transparent !important;
+  border: 1.5px solid #94a3a0 !important;
+  color: #94a3a0 !important;
+  box-shadow: none !important;
+}
+
+.mnc-swal-cancel:hover {
+  border-color: #db2777 !important;
+  color: #db2777 !important;
+}

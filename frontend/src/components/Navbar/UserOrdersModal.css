@@ -1,0 +1,72 @@
+.user-orders-modal { max-width: 460px; text-align: left; }
+.user-orders-modal .modal-title { text-align: center; margin-bottom: 1.4rem; }
+
+.user-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.user-order-card {
+  background: var(--bg-raised-2);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+}
+
+.user-order-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.user-order-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.user-order-items {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.user-order-address {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.user-order-total {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.user-order-locked {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.user-order-edit-form { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.user-order-edit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  padding: 0.3rem 0;
+}
+
+.user-order-edit-total {
+  font-weight: 700;
+  color: var(--gold);
+  text-align: right;
+  font-size: 0.88rem;
+}
